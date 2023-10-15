@@ -5,6 +5,7 @@ function getData() {
     JSON.parse(localStorage.getItem("state")) || {
       color: "rgb(148, 163, 184)",
       theme: "light",
+      user: null,
     }
   );
 }
@@ -17,6 +18,8 @@ const updateState = (state, action) => {
     case "CHANGE_THEME":
       document.documentElement.setAttribute("data-theme", action.payload);
       return { ...state, theme: action.payload };
+    case "CHANGE_USER":
+      return { ...state, user: action.payload };
     default:
       return state;
   }
@@ -29,6 +32,9 @@ export function ContextGlobal({ children }) {
   const changeTheme = (theme) => {
     dispatch({ type: "CHANGE_THEME", payload: theme });
   };
+  const changeUser = (user) => {
+    dispatch({ type: "CHANGE_USER", payload: user });
+  };
   const newState = useMemo(() => {
     return state;
   });
@@ -38,7 +44,9 @@ export function ContextGlobal({ children }) {
     document.documentElement.setAttribute("data-theme", theme);
   });
   return (
-    <ContextProvide.Provider value={{ state, changeColor, changeTheme }}>
+    <ContextProvide.Provider
+      value={{ state, changeColor, changeTheme, changeUser }}
+    >
       {children}
     </ContextProvide.Provider>
   );

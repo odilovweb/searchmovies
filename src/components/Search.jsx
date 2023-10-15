@@ -52,7 +52,7 @@ function Search() {
               >
                 Search Result
               </h1>
-              <ul className="grid grid-cols-1 gap-5 gap-y-[50px] desktop:grid-cols-3 laptop:grid-cols-2">
+              <ul className="grid grid-cols-1 desktop:gap-5 laptop:gap-8 desktop:gap-y-[50px] desktop:grid-cols-3 laptop:grid-cols-2">
                 {data.docs.map((item) => {
                   return (
                     <li
@@ -74,8 +74,9 @@ function Search() {
                               {item.year}
                             </div>
                           </h2>
-
-                          <p>{item.description.substring(0, 130)}...</p>
+                          <p className="desktop:text-[15px] laptop:text-[13px] tablet:text-[11px]">
+                            {item.description.substring(0, 130)}...
+                          </p>
                           <div className="card-actions justify-end">
                             {item.countries.map((genre) => {
                               return (

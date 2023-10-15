@@ -22,7 +22,7 @@ function MoviesList() {
             {error}
           </h1>
         )}
-        <ul className="grid grid-cols-1 desktop:gap-5 desktop:gap-y-[50px] desktop:grid-cols-3 laptop:grid-cols-2 ">
+        <ul className="grid grid-cols-1 desktop:gap-5 laptop:gap-8 desktop:gap-y-[50px] desktop:grid-cols-3 laptop:grid-cols-2 ">
           {data &&
             data.docs.map((item) => {
               return (
@@ -43,7 +43,7 @@ function MoviesList() {
                         {item.alternativeName}
                         <div className="badge badge-secondary">{item.year}</div>
                       </h2>
-                      <p className="tablet:text-[11px]">
+                      <p className="desktop:text-[15px] laptop:text-[13px] tablet:text-[11px]">
                         {item.description.substring(0, 130)}...
                       </p>
                       <div className="card-actions justify-end">

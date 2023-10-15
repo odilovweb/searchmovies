@@ -6,7 +6,7 @@ import { useContextGlobal } from "../hooks/useContextGlobal";
 function Navbar() {
   const colors = ["rgb(148, 163, 184)", "#A6FF96", "#FFF8C9", "#555843"];
   const { changeTheme, changeColor } = useContextGlobal();
-  const { color, theme } = useContextGlobal().state;
+  const { color, theme, user } = useContextGlobal().state;
   const handleMode = () => {
     theme === "dark" ? changeTheme("light") : changeTheme("dark");
   };
@@ -39,7 +39,7 @@ function Navbar() {
       >
         {theme === "dark" ? <FaSun /> : <FaMoon />}
       </button>
-      {JSON.parse(localStorage.getItem("user")) ? (
+      {user ? (
         <>
           <Link
             to="user"

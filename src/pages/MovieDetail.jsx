@@ -5,7 +5,6 @@ import Loader from "../components/Loader";
 
 function MovieDetail() {
   const id = useLocation().pathname.slice(13);
-  console.log(id);
   const { data, error, isPending } = getById(id);
   return (
     <div className="align-element">

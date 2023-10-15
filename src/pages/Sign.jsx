@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useContextGlobal } from "../hooks/useContextGlobal";
 
 function Sign() {
   const [name, setName] = useState("");
   const [mail, setMail] = useState("");
   const [pass, setPass] = useState("");
   const [gender, setGender] = useState("");
-  const handleDelte = () => {
-    localStorage.removeItem("user");
-  };
+  const { changeUser } = useContextGlobal();
   const handleSubmit = (e) => {
     const dataUser = {
       name,
@@ -20,6 +19,7 @@ function Sign() {
     setName("");
     setMail("");
     setPass("");
+    changeUser(dataUser);
     toast.success("You have been signed up 👍");
     localStorage.setItem("user", JSON.stringify(dataUser));
   };
@@ -45,7 +45,7 @@ function Sign() {
             <Link className="btn btn-secondary w-full mb-4" to="../user">
               My Profile
             </Link>
-            <Link to="/" className="btn btn-primary ml-auto mb-5">
+            <Link to="/" className="btn btn-primary w-full mb-5 ">
               BAck home
             </Link>
           </div>
@@ -57,7 +57,7 @@ function Sign() {
               <input
                 value={mail}
                 required
-                type="text"
+                type="email"
                 placeholder="...@gmail.com"
                 className="input input-bordered input-success w-full max-w-xs mb-3"
                 onChange={(e) => {
@@ -111,7 +111,13 @@ function Sign() {
                 }}
               />
             </label>
-            <button className="btn btn-primary">SIgn up</button>
+            <button className="btn btn-secondary">SIgn up</button>
+            <Link
+              className="btn btn-primary max-w-[120px] ml-auto w-full"
+              to="/"
+            >
+              BACK HOME
+            </Link>
           </div>
         )}
       </form>

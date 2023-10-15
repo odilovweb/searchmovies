@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const headers = {
-  "X-API-KEY": "F9G4W5S-WHKMGW0-K8M5CVM-J077YAM",
+  "X-API-KEY": "FB3K7DR-7FBMYM5-H2Y9YGR-BVC2AV0",
 };
 
 function getMoviesByName(name, page = 1, limit = 15) {

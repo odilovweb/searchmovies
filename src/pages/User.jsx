@@ -2,18 +2,23 @@ import { useState } from "react";
 import { FaUser, FaPen, FaTrash } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useContextGlobal } from "../hooks/useContextGlobal";
 
 function User() {
   const [oldPass, setOldPass] = useState("");
   const [newPas, setNewPass] = useState("");
   const [err, setErr] = useState(null);
-
-  const dataUser = JSON.parse(localStorage.getItem("user"))
-    ? JSON.parse(localStorage.getItem("user"))
-    : null;
+  const { changeUser } = useContextGlobal();
+  const [dataUser, setDataUser] = useState(
+    JSON.parse(localStorage.getItem("user"))
+      ? JSON.parse(localStorage.getItem("user"))
+      : null
+  );
   const handleDelte = (e) => {
     e.preventDefault();
     localStorage.removeItem("user");
+    setDataUser(null);
+    changeUser(null);
     toast.success("Account has been deleted");
   };
   const changePass = (e) => {
@@ -21,6 +26,9 @@ function User() {
     if (oldPass === dataUser.pass) {
       let newData = { ...dataUser, pass: newPas };
       localStorage.setItem("user", JSON.stringify(newData));
+      setDataUser(JSON.parse(localStorage.getItem("user")));
+      setErr("");
+      changeUser(newData);
       toast.success("Successfuly changed 👍");
     } else {
       setErr("Incorrect Password");
@@ -171,5 +179,4 @@ function User() {
     </>
   );
 }
-
 export default User;
