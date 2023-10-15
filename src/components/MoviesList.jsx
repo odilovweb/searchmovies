@@ -7,7 +7,6 @@ import { useContextGlobal } from "../hooks/useContextGlobal";
 function MoviesList() {
   const { data, error, isPending } = getMoviesByName(" ");
   const { color } = useContextGlobal().state;
-  data && console.log(data.docs[1]);
   return (
     <>
       <div className="mb-10">

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FaUser, FaPen, FaTrash } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function User() {
   const [oldPass, setOldPass] = useState("");
@@ -10,13 +11,17 @@ function User() {
   const dataUser = JSON.parse(localStorage.getItem("user"))
     ? JSON.parse(localStorage.getItem("user"))
     : null;
-  const handleDelte = () => {
+  const handleDelte = (e) => {
+    e.preventDefault();
     localStorage.removeItem("user");
+    toast.success("Account has been deleted");
   };
   const changePass = (e) => {
+    e.preventDefault();
     if (oldPass === dataUser.pass) {
       let newData = { ...dataUser, pass: newPas };
       localStorage.setItem("user", JSON.stringify(newData));
+      toast.success("Successfuly changed 👍");
     } else {
       setErr("Incorrect Password");
     }
@@ -24,7 +29,7 @@ function User() {
   return (
     <>
       {JSON.parse(localStorage.getItem("user")) ? (
-        <div className="card w-96 bg-base-100 shadow-xl mx-auto my-[137px]">
+        <div className="card w-full max-w-lg bg-base-100 shadow-xl mx-auto my-[137px]">
           <div className="card-body">
             <h1 className="text-3xl">
               <FaUser />
@@ -79,7 +84,7 @@ function User() {
             </div>
           </div>
 
-          <dialog id="my_modal_3" className="modal">
+          <dialog id="my_modal_3" className="modal max-w-md w-full mx-auto">
             <div className="modal-box">
               <form method="dialog">
                 <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
@@ -90,7 +95,12 @@ function User() {
               <p className="py-4 text-2xl text-red-500">
                 Are you sure delete the profile ?
               </p>
-              <form onSubmit={handleDelte}>
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  handleDelte(e);
+                }}
+              >
                 <button className="w-full ml-auto btn-primary btn">
                   Yes, I'm sure
                 </button>
@@ -98,7 +108,7 @@ function User() {
             </div>
           </dialog>
 
-          <dialog id="my_modal_4" className="modal">
+          <dialog id="my_modal_4" className="modal max-w-md w-full mx-auto">
             <div className="modal-box">
               <form method="dialog">
                 <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
@@ -108,6 +118,7 @@ function User() {
               <h3 className="font-bold text-lg ">Change Password</h3>
               <form
                 onSubmit={(e) => {
+                  e.preventDefault();
                   changePass(e);
                 }}
               >

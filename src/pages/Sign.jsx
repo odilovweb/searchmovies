@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Sign() {
   const [name, setName] = useState("");
@@ -16,6 +17,10 @@ function Sign() {
       pass,
       gender,
     };
+    setName("");
+    setMail("");
+    setPass("");
+    toast.success("You have been signed up 👍");
     localStorage.setItem("user", JSON.stringify(dataUser));
   };
 
@@ -23,9 +28,10 @@ function Sign() {
     <div className="align-element">
       <form
         onSubmit={(e) => {
+          e.preventDefault();
           handleSubmit(e);
         }}
-        className="card w-96 bg-base-100 shadow-xl my-[82px] mx-auto"
+        className="card bg-base-100 shadow-xl my-[82px] mx-auto w-full max-w-md"
       >
         {JSON.parse(localStorage.getItem("user")) ? (
           <div className="px-3">
@@ -49,6 +55,8 @@ function Sign() {
             <p className="mb-3">This is necessary for wider use of the site</p>
             <label>
               <input
+                value={mail}
+                required
                 type="text"
                 placeholder="...@gmail.com"
                 className="input input-bordered input-success w-full max-w-xs mb-3"
@@ -59,6 +67,7 @@ function Sign() {
             </label>
             <label>
               <input
+                value={name}
                 required
                 type="text"
                 placeholder="Your name"
@@ -70,6 +79,7 @@ function Sign() {
             </label>
             <label>
               <input
+                value={pass}
                 required
                 type="password"
                 placeholder="Create Password"
