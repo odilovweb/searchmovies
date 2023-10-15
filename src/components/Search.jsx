@@ -12,13 +12,13 @@ function Search() {
 
   return (
     <>
-      <form className="py-5">
+      <form className="py-5 ">
         <div className="flex">
           <label className="mr-5">
             <input
               type="text"
               placeholder="Search for the movie you like..."
-              className="w-100 w-72 input input-secondary"
+              className="w-100 w-72 input input-secondary max-[360px]:w-full"
               onChange={(e) => {
                 setValue(e.target.value);
               }}
@@ -47,7 +47,7 @@ function Search() {
           {data && (
             <>
               <h1
-                className="text-2xl text-slate-800 rounded-[3px] font-semibold text-center my-5 py-1"
+                className="text-2xl text-slate-800 rounded-[3px] font-semibold text-center my-5 py-1 tablet:text-xl"
                 style={{ backgroundColor: color }}
               >
                 Search Result
@@ -57,7 +57,7 @@ function Search() {
                   return (
                     <li
                       key={item.id}
-                      className="card w-96 bg-base-100 shadow-xl hover-element tablet:mx-auto"
+                      className="card w-96 bg-base-100 shadow-xl hover-element tablet:mx-auto tablet:w-[330px] tablet:mb-4 max-[500px]:w-full"
                     >
                       <Link to={`movie-detail/${item.id}`}>
                         <figure>
@@ -68,9 +68,9 @@ function Search() {
                           />
                         </figure>
                         <div className="card-body">
-                          <h2 className="card-title">
+                          <h2 className="card-title  tablet:text-[15px]">
                             {item.alternativeName}
-                            <div className="badge badge-secondary">
+                            <div className="badge badge-secondary  tablet:text-[11px]">
                               {item.year}
                             </div>
                           </h2>
@@ -81,7 +81,7 @@ function Search() {
                               return (
                                 <div
                                   key={genre}
-                                  className="badge badge-outline"
+                                  className="badge badge-outline  tablet:text-[13px]"
                                 >
                                   {genre}
                                 </div>

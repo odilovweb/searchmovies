@@ -7,7 +7,6 @@ function MovieDetail() {
   const id = useLocation().pathname.slice(13);
   console.log(id);
   const { data, error, isPending } = getById(id);
-  data && console.log(data);
   return (
     <div className="align-element">
       {isPending && <Loader />}
@@ -25,15 +24,17 @@ function MovieDetail() {
             />
           </figure>
           <div className="card-body tablet:px-5 laptop:px-8 desktop:px-10">
-            <h2 className="card-title font-bold text-3xl mx-auto">
+            <h2 className="card-title font-bold text-3xl mx-auto  tablet:text-2xl">
               {data.alternativeName}
             </h2>
-            <p className="text-xl italic">
+            <p className="text-xl italic  tablet:text-[13px]">
               <span>Year: </span> <span>{data.year}y</span>
             </p>
             <p className="mb-3">
               <span className="font-bold block italic">About Film:</span>
-              <span className="pl-3">{data.description}</span>
+              <span className="pl-3  tablet:text-[13px]">
+                {data.description}
+              </span>
             </p>
             <p>
               <span className="font-bold">Budget: </span>

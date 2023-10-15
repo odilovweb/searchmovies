@@ -11,11 +11,11 @@ function Navbar() {
     theme === "dark" ? changeTheme("light") : changeTheme("dark");
   };
   return (
-    <nav className="align-element flex items-center py-2">
+    <nav className="align-element flex items-center py-2 max-[405px]:flex-col max-[405px]:gap-3">
       <Link
         to="/"
         className="
-      mr-auto cursor-pointer text-gray-800 font-bold tablet:text-xl laptop:text-2xl desktop:text-3xl"
+      mr-auto cursor-pointer text-gray-800 font-bold tablet:text-xl laptop:text-2xl desktop:text-3xl max-[405px]:mx-auto"
       >
         Search<span className="text-red-900">Movies</span>
       </Link>
