@@ -4,7 +4,6 @@ import { Outlet } from "react-router-dom";
 import { useContextGlobal } from "../hooks/useContextGlobal";
 function RooterLayout() {
   const { color } = useContextGlobal().state;
-  console.log(color);
 
   return (
     <>

@@ -1,5 +1,5 @@
 import React from "react";
-import { FaSun, FaMoon } from "react-icons/fa6";
+import { FaSun, FaMoon, FaUser } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { useContextGlobal } from "../hooks/useContextGlobal";
 
@@ -15,7 +15,7 @@ function Navbar() {
       <Link
         to="/"
         className="
-      mr-auto cursor-pointer font-bold tablet:text-xl laptop:text-2xl desktop:text-3xl"
+      mr-auto cursor-pointer text-gray-800 font-bold tablet:text-xl laptop:text-2xl desktop:text-3xl"
       >
         Search<span className="text-red-900">Movies</span>
       </Link>
@@ -34,11 +34,28 @@ function Navbar() {
         })}
       </div>
       <button
-        className="cursor-pointer tablet:text-xl laptop:text-2xl desktop:text-3xl"
+        className="cursor-pointer mr-3 tablet:text-xl laptop:text-2xl desktop:text-3xl"
         onClick={handleMode}
       >
         {theme === "dark" ? <FaSun /> : <FaMoon />}
       </button>
+      {JSON.parse(localStorage.getItem("user")) ? (
+        <>
+          <Link
+            to="user"
+            className="cursor-pointer text-2xl flex gap-2 items-center"
+          >
+            <h1 className="text-xl font-semibold">
+              {JSON.parse(localStorage.getItem("user")).name}
+            </h1>
+            <FaUser />
+          </Link>
+        </>
+      ) : (
+        <Link to="sign-up" className="btn-primary btn">
+          Sign up
+        </Link>
+      )}
     </nav>
   );
 }

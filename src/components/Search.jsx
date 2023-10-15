@@ -25,7 +25,7 @@ function Search() {
             />
           </label>
           <button
-            className="text-3xl"
+            className="text-3xl hover:scale-110"
             onClick={(e) => {
               e.preventDefault();
               setSubmit(value);
